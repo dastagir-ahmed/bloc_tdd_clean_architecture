@@ -6,6 +6,6 @@ abstract class UsecaseWithParams<Type, Params>{
 }
 
 abstract class UsecaseWithoutParams<Type>{
-  UsecaseWithoutParams();
+  const UsecaseWithoutParams();
   ResultFuture<Type> call();
 }
