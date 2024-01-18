@@ -21,12 +21,19 @@ void main() {
   test('should call the [AuthRepo.createUser]', () async {
     //arrange
     //STUB
-    when(() =>
-        repository.createUser(name: any(named:'name' ), avatar: any(named:'avatar'), createdAt: any(named:'createdAt')))
+    when(() => repository.createUser(
+            name: any(named: 'name'),
+            avatar: any(named: 'avatar'),
+            createdAt: any(named: 'createdAt')))
         .thenAnswer((_) async => const Right(null));
     //act
     final result = await usecase(params);
     //assert
     expect(result, equals(const Right<Failure, void>(null)));
+    verify(() => repository.createUser(
+        name: params.name,
+        avatar: params.avatar,
+        createdAt: params.createdAt)).called(1);
+    verifyNoMoreInteractions(repository);
   });
 }
